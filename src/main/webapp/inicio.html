@@ -6,8 +6,12 @@
 	<link rel="stylesheet" type="text/css" href="css/metroapp.css">
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
 	<script type="text/javascript" src="js/metroapp.js"></script>
 	<script type"text/javascript" src="js/google-map.js"></script>
+	<!--
+
+	-->
 </head>
 <body>
 	<header>
@@ -35,8 +39,6 @@
 							<input  id="direccion" name="direccion" type = "text"  class = "form-control" placeholder="A donde ir">
 						</div>
 						<input  class = "btn btn-default"  type ="button" onclick="consultar()" value="Consultar"> 
-						<input  name="lat" id="lat"/>
-						<input  name="lng" id="long"/>
 					</form>
 					<div class="mapa">
 						<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15609.729636017966!2d-77.0506784!3d-12.013724!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1435414427231" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
