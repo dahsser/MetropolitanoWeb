@@ -16,12 +16,4 @@ public class Linea {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public List<Ubicacion> getEstaciones() {
-        return estaciones;
-    }
-
-    public void setEstaciones(List<Ubicacion> estaciones) {
-        this.estaciones = estaciones;
-    }
 }
