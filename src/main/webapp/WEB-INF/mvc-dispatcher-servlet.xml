@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 	http://www.springframework.org/schema/beans/spring-beans.xsd 	http://www.springframework.org/schema/context 	http://www.springframework.org/schema/context/spring-context.xsd">
+       <context:component-scan base-package="pe.uni.fiis.metro.controller"/>
+       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+              <property name="prefix"><value>/WEB-INF/pages/</value></property>
+              <property name="suffix"><value>.jsp</value></property>
+       </bean>
+       <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+              <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+              <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE" />
+              <property name="username" value="sys as sysdba" />
+              <property name="password" value="Deidago7O" />
+       </bean>
+       <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+              <constructor-arg ref="datasource"></constructor-arg>
+       </bean>
+       <bean id="rutaDao" class="pe.uni.fiis.metro.dao.impl.RutaDAOImpl">
+              <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+       </bean>
+       <bean id="metroService" class="pe.uni.fiis.metro.service.impl.MetroServiceImpl">
+              <property name="rutaDAO" ref="rutaDao"></property>
+       </bean>
+</beans>
