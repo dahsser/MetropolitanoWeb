@@ -4,13 +4,13 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/metroapp.css">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css"/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/metroapp.css"/>">
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
-	<script type="text/javascript" src="js/metroapp.js"></script>
-	<script type="text/javascript" src="js/google-map.js"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/metroapp.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/google-map.js"/>"></script>
 	<!--
 
 	-->
@@ -31,33 +31,45 @@
 		</div>
 	</header>
 
-	<div class="container-fluid principal">	
+	<div class="container-fluid principal">
 		<div class="main row ">
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="centro">
 
-					<form class="form-inline">
-						<div class="form-group">
-							<input  id="direccion" name="direccion" type = "text"  class = "form-control" placeholder="A donde ir">
-						</div>
-						<input  class = "btn btn-default"  type ="button" onclick="consultar()" value="Consultar"> 
+					<h1><strong>MetroApp</strong></h1>
+					<br>
+					<div id="googleMap" class="mapa"></div>
+					<br>
+					<button onclick="alerta()" type="button" class="btn btn-danger">Ubicación manual</button>
+					<button data-toggle="modal" data-target="#myModal" onclick="getLocation()" type="button" class="btn btn-danger">Ubicación automática</button>
+					<p id="demo"></p>
+
+					<form id="datos" action="/rutas">
+						<input hidden="hidden" id="latitud1" name="latitud1" type="text"/>
+						<input hidden="hidden" id="longitud1" name="longitud1" type="text"/>
+						<input hidden="hidden" id="latitud2" name="latitud2" type="text"/>
+						<input hidden="hidden" id="longitud2" name="longitud2" type="text"/>
 					</form>
-					<div class="mapa">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15609.729636017966!2d-77.0506784!3d-12.013724!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1435414427231" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-					</div>
-					
-					<button type="button" class="btn btn-danger">Ubicación manual</button>
-					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Ubicación automática</button>
+
 				</div>
 			</div>
 		</div>
 	</div>
-	<c:forEach items="${rutas}" var="ruta">
-		<h4>Nombre:</h4>	 ${ruta.linea.nombre}
-		Origen: ${ruta.estacionInicial.nombre}
-		Destino:${ruta.estacionFinal.nombre}
-		<br/>
-	</c:forEach>
+
+	<table class="table table-bordered" style="text-align: center;">
+		<tr  style="background-color: lawngreen ;">
+			<th style="text-align: center;">Linea</th>
+			<th style="text-align: center;">Origen</th>
+			<th style="text-align: center;">Destino</th>
+		</tr>
+			<c:forEach items="${rutas}" var="ruta">
+			<tr>
+				<td>${ruta.linea.nombre}</td>
+				<td>${ruta.estacionInicial.nombre}</td>
+				<td>${ruta.estacionFinal.nombre}</td>
+			</tr>
+			</c:forEach>
+	</table>
 <div id="myModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
