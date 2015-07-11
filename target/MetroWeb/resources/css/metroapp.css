@@ -1,0 +1,31 @@
+body{
+	background: #C6C4A4;
+}
+.adaptar{
+	width: 100%;
+	padding: 15px;
+}
+.color1{
+	text-align:  center;
+	color: red;
+}
+.principal{
+	text-align: center;
+
+}
+
+.centro{
+	padding: 10px;
+}
+.mapa{
+	margin: 0 auto;
+	text-align: center;
+	width:500px;
+	height:380px;
+}
+h1{
+	width: 40%;
+	margin: 0 auto;
+	background: blue;
+	border-radius: 10px;
+}
